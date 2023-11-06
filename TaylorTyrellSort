@@ -1,0 +1,46 @@
+import java.util.Comparator;
+import java.util.Random;
+
+public class Sort {
+
+    public static <T> void sort(T[] array, Comparator<? super T> comparator) {
+        if (array == null || array.length <= 1) {
+            return; // No need to sort
+        }
+
+        Random random = new Random();
+        int n = array.length;
+
+        for (int i = 0; i < n; i++) {
+            int randomIndex = i + random.nextInt(n - i);
+            swap(array, i, randomIndex);
+        }
+
+        // It's shuffled, now you might want to use a stable sort
+        // In this case, let's use a modified bubble sort
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (comparator.compare(array[j], array[j + 1]) > 0) {
+                    swap(array, j, j + 1);
+                }
+            }
+        }
+    }
+
+    private static <T> void swap(T[] array, int i, int j) {
+        T temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    // Example usage:
+    public static void main(String[] args) {
+        Integer[] numbers = {5, 2, 9, 1, 5, 6};
+        System.out.println("Original array: " + java.util.Arrays.toString(numbers));
+
+        // Sorting the array of integers using a random sort
+        sort(numbers, Comparator.naturalOrder());
+
+        System.out.println("Sorted array using random sort: " + java.util.Arrays.toString(numbers));
+    }
+}
