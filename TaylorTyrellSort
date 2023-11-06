@@ -1,7 +1,7 @@
 import java.util.Comparator;
 import java.util.Random;
 
-public class Sort {
+public class TaylorTyrellSort {
 
     public static <T> void sort(T[] array, Comparator<? super T> comparator) {
         if (array == null || array.length <= 1) {
