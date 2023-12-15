@@ -31,8 +31,27 @@ public class InsertionSort implements Sorter {
   // | Methods |
   // +---------+
 
+  /**
+   * Sort.
+   */
   @Override
   public <T> void sort(T[] values, Comparator<? super T> order) {
-    // STUB
-  } // sort(T[], Comparator<? super T>
+    sort(values, order, 0);
+  } // sort(T[], Comparator<? super T>, i)
+
+  /**
+   * Sort helper.
+   */
+  public <T> void sort(T[] values, Comparator<? super T> order, int i) {
+    if (i == values.length - 2) {
+      return;
+    } else {
+      if (order.compare(values[i], values[i + 1]) < 0) {
+        T temp = values[i];
+        values[i] = values[i + 1];
+        values[i + 1] = temp;
+      } // if
+    } // if/else
+    sort(values, order, ++i);
+  } // sort(T[], Comparator<? super T>, i)
 } // class InsertionSort
